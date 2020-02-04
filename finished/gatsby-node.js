@@ -5,19 +5,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
+    console.log(value)
     createNodeField({
-      name: `slug`,
       node,
       value,
     });
   }
 };
 
-exports.createPages = ({ actions, graphql }) => {
+exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
   const postTemplate = path.resolve('src/templates/blogPost.js');
 
-  return graphql(`
+  const res = await graphql(`
     {
       allMarkdownRemark {
         edges {
@@ -35,19 +35,11 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-  `).then(res => {
-    if (res.errors) {
-      return Promise.reject(res.errors);
-    }
-
-    res.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      const posts = res.data.allMarkdownRemark.edges;
-      posts.forEach(({ node }) => {
-        createPage({
-          path: node.frontmatter.path,
-          component: postTemplate,
-        });
-      });
+  `)
+  res.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    createPage({
+      path: node.frontmatter.path,
+      component: postTemplate,
     });
   });
 };
