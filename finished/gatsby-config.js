@@ -1,11 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `My Fancy New Gatsby Blog`,
+    title: `Gatsby Workshop Blog`,
     description: `It kicks butt`,
-    author: `Your lovely face`,
+    author: `Taylor`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
