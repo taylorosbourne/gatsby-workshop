@@ -1,14 +1,19 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import BlogPost from '../components/blogPost';
 
 const BlogPostTemplate = ({ data }) => {
   const { html: __html } = data.markdownRemark;
-  const { title, date } = data.markdownRemark.frontmatter;
+  const { title, date, author, tag } = data.markdownRemark.frontmatter;
   return (
     <Layout>
-      <BlogPost __html={__html} title={title} date={date} />
+      <h1>{title}</h1>
+      <h4>{date}</h4>
+      <p>Tags: {tag}</p>
+      <div
+        dangerouslySetInnerHTML={{ __html }}
+      />
+      <p>written by {author}</p>
     </Layout>
   );
 };

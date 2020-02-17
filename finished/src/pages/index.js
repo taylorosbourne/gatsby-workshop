@@ -14,7 +14,7 @@ const IndexPage = ({ data }) => {
       <h1>Welcome to my blog</h1>
       <PostList posts={posts} />
     </Layout>
-)
+  )
 }
 
 export default IndexPage

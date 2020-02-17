@@ -4,9 +4,9 @@ import { Link } from "gatsby"
 const PostList = ({ posts }) => (
   <>
     <br />
-    {posts.map((post, i) => {
+    {posts.map(post => {
       const { frontmatter, id } = post.node;
-      const { path, title } = frontmatter;
+      const { title, path } = frontmatter;
       return (
         <div key={id}>
           <h3>

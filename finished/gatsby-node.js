@@ -9,14 +9,8 @@ exports.createPages = async ({ actions, graphql }) => {
       allMarkdownRemark {
         edges {
           node {
-            html
-            id
             frontmatter {
               path
-              title
-              date
-              author
-              tag
             }
           }
         }
