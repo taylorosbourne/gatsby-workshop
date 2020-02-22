@@ -19,8 +19,8 @@ const IndexPage = ({ data }) => {
 
 export default IndexPage
 
-export const RECENT_POSTS_QUERY = graphql`
-  query RECENT_POSTS_QUERY {
+export const ALL_POSTS_QUERY = graphql`
+  query ALL_POSTS_QUERY {
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
